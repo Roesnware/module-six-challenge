@@ -14,3 +14,7 @@ h1 {
 #header {
     background-image: linear-gradient(to right, #465AB8, #261360);
 }
+
+#search-bar::placeholder {
+    color: rgb(155, 153, 153);
+}
