@@ -8,7 +8,7 @@ h1 {
 /* class selectors */
 .btn {
     background-color: #465AB8;
-    color: (155, 153, 153)
+    color: (155, 153, 153);
 }
 
 .forecast-box {
@@ -24,6 +24,11 @@ h1 {
 
 #search-bar::placeholder {
     color: rgb(155, 153, 153);
+}
+
+#search-bar {
+    border: 1px solid black;
+    border-radius: 4px;
 }
 
 #data-text h3 {
