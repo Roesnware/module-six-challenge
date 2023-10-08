@@ -8,11 +8,13 @@ h1 {
 /* class selectors */
 .btn {
     background-color: #465AB8;
+    color: (155, 153, 153)
 }
 
 .forecast-box {
     background-color: #323D4F;
     color: white;
+    width: 14rem;
 }
 
 /* id selectors */
@@ -26,10 +28,12 @@ h1 {
 
 #data-text h3 {
     font-size: 1rem;
+    font-weight: light;
 }
 
 #data-text h5 {
     font-size: 1rem;
+    font-weight: light;
 }
 
 #forecast-flex {
