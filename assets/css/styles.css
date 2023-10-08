@@ -10,6 +10,11 @@ h1 {
     background-color: #465AB8;
 }
 
+.forecast-box {
+    background-color: #323D4F;
+    color: white;
+}
+
 /* id selectors */
 #header {
     background-image: linear-gradient(to right, #465AB8, #261360);
@@ -17,4 +22,16 @@ h1 {
 
 #search-bar::placeholder {
     color: rgb(155, 153, 153);
+}
+
+#data-text h3 {
+    font-size: 1rem;
+}
+
+#data-text h5 {
+    font-size: 1rem;
+}
+
+#forecast-flex {
+    justify-content: space-between;
 }
