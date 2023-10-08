@@ -1,0 +1,16 @@
+/* element selectors */
+h1 {
+    color: white;
+    text-align: right;
+    padding-right: 20rem;
+}
+
+/* class selectors */
+.btn {
+    background-color: #465AB8;
+}
+
+/* id selectors */
+#header {
+    background-image: linear-gradient(to right, #465AB8, #261360);
+}
