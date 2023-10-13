@@ -7,25 +7,35 @@ const curr_wind = document.getElementById("curr-wind");
 const curr_humid = document.getElementById("curr-humidity");
 
 // hooks for 5day forecast 
+let day_one_date = document.getElementById("date-1");
 let day_one_humid = document.getElementById("forecast-humidity-1");
 let day_one_temp = document.getElementById("forecast-temp-1");
 let day_one_wind = document.getElementById("forecast-wind-1");
+let day_one_icon = document.getElementById("icon-1");
 
+let day_two_date = document.getElementById("date-2");
 let day_two_humid = document.getElementById("forecast-humidity-2");
 let day_two_temp = document.getElementById("forecast-temp-2");
 let day_two_wind = document.getElementById("forecast-wind-2");
+let day_two_icon = document.getElementById("icon-2");
 
+let day_three_date = document.getElementById("date-3");
 let day_three_humid = document.getElementById("forecast-humidity-3");
 let day_three_temp = document.getElementById("forecast-temp-3");
 let day_three_wind = document.getElementById("forecast-wind-3");
+let day_three_icon = document.getElementById("icon-3");
 
+let day_four_date = document.getElementById("date-4");
 let day_four_humid = document.getElementById("forecast-humidity-4");
 let day_four_temp = document.getElementById("forecast-temp-4");
 let day_four_wind = document.getElementById("forecast-wind-4");
+let day_four_icon = document.getElementById("icon-4");
 
+let day_five_date = document.getElementById("date-5");
 let day_five_humid = document.getElementById("forecast-humidity-5");
 let day_five_temp = document.getElementById("forecast-temp-5");
 let day_five_wind = document.getElementById("forecast-wind-5");
+let day_five_icon = document.getElementById("icon-5");
 
 // day
 const date = dayjs().format("M/DD/YYYY");
@@ -239,7 +249,8 @@ function checkForecast() {
         let day_five = data.list[4];
 
 
-        //console.log(day_one);
+        //day_one_date.innerText = date_one;
+        console.log(day_one);
         day_one_temp.innerText += " " + day_one.main.temp + " °F";
         //console.log(day_one.main.temp);
 
@@ -248,6 +259,8 @@ function checkForecast() {
 
         day_one_wind.innerText += " " + day_one.wind.speed + " MPH";
         //console.log(day_one.wind.speed);
+
+        day_one_icon.innerText = day_one.weather[0].icon;
 
         //console.log(day_two);
         day_two_temp.innerText += " " + day_two.main.temp + " °F";
@@ -259,6 +272,9 @@ function checkForecast() {
         day_two_wind.innerText += " " + day_two.wind.speed + " MPH";
         //console.log(day_two.wind.speed);
 
+        day_two_icon.innerText = day_two.weather[0].icon;
+
+        //day_one_date.innerText = date_one;
         //console.log(day_three);
         day_three_temp.innerText += " " + day_three.main.temp + " °F";
         //console.log(day_three.main.temp);
@@ -269,6 +285,9 @@ function checkForecast() {
         day_three_wind.innerText += " " + day_three.wind.speed + " MPH";
         //console.log(day_three.wind.speed);
 
+        day_three_icon.innerText = day_three.weather[0].icon;
+
+        //day_one_date.innerText = date_one;
         //console.log(day_four);
         day_four_temp.innerText += " " + day_four.main.temp + " °F";
         //console.log(day_four.main.temp);
@@ -279,6 +298,9 @@ function checkForecast() {
         day_four_wind.innerText += " " + day_four.wind.speed + " MPH";
         //console.log(day_four.wind.speed);
 
+        day_four_icon.innerText = day_four.weather[0].icon;
+
+        //day_one_date.innerText = date_one;
         //console.log(day_five);
         day_five_temp.innerText += " " + day_five.main.temp + " °F";
         //console.log(day_five.main.temp);
@@ -288,6 +310,8 @@ function checkForecast() {
 
         day_five_wind.innerText += " " + day_five.wind.speed + " MPH";
         //console.log(day_five.wind.speed);
+
+        day_five_icon.innerText = day_five.weather[0].icon;
 
         //console.log(day_one);
         //console.log(data);
