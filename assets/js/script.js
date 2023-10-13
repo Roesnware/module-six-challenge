@@ -17,10 +17,12 @@ const API_KEY = "63ade8061ec746b59a54a2e5c87f0f82";
 
 // const var
 const limit = 1;
+const count = 5;
 
 // const api call url
 const geo_location_url = "http://api.openweathermap.org/geo/1.0/direct";
 const weather_url = "https://api.openweathermap.org/data/2.5/weather";
+const forecast_url = "https://api.openweathermap.org/data/2.5/forecast/daily";
 
 // func to get geo loc
 function getGeoLocation(city, state_code, country_code) {
@@ -174,6 +176,36 @@ function setDate() {
     //console.log(date);
 }
 
+// func to get 5-day forecast
+function get5Day() {
+    // copy url 
+    let url = forecast_url;
+
+    // add lat from local storage 
+    let lat = localStorage.getItem("latitude");
+    url += "?lat=" + lat;
+
+    // add long from local storage
+    let long = localStorage.getItem("longitude");
+    url += "&lon" + long;
+
+    // add count and pai keyy
+    url += "&cnt=" + count;
+    url += "&appid=" + API_KEY;
+
+    // req var
+    let req = new XMLHttpRequest();
+
+    // open req
+    req.open("GET", url, true);
+
+    // send req
+    req.send(null);
+
+    // check api call 
+    req.onload = checkForecast;
+}
+
 // initalize func
 function init() {
     // get input on search
@@ -183,7 +215,7 @@ function init() {
     setDate();
 
     // set up 5-day forecast
-
+    get5Day();
 }
 
 init();
