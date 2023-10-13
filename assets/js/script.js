@@ -155,13 +155,13 @@ function handlePage(icon, wind, humidity, temp) {
     curr_icon.innerText = icon;
 
     // set humidity
-    curr_humid.innerText += " " + humidity;
+    curr_humid.innerText += " " + humidity + " %";
 
     // set temp
-    curr_temp.innerText += " " + temp;
+    curr_temp.innerText += " " + temp + " °F";
 
     // set wind 
-    curr_wind.innerText += " " + wind;
+    curr_wind.innerText += " " + wind + " MPH";
 }
 
 getGeoLocation("orlando", "FL", 1);
