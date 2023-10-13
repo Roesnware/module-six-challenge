@@ -10,7 +10,7 @@ $(button).on("click", function () {
     // get input on search
 
     setDate();
-
+    
     getGeoLocation(city);
 
 });
@@ -352,8 +352,7 @@ function init() {
 
     // get curr city data from storage
     var city = localStorage.getItem("city_name");
-    
+
     // run func w curr city
     getGeoLocation(city);
-
 }
