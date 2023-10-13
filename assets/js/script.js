@@ -130,8 +130,23 @@ function checkWeather() {
 
 // fucn to convert temp to far
 function convertTemp(temp) {
+    // convert 
     temp -= 273.15;
-    return temp;
+
+    // round 
+    var new_temp = roundMe(temp);
+
+    // return temp
+    return new_temp;
+}
+
+// func to round tmep 
+function roundMe(temp) {
+    // round 
+    new_temp = Math.round(temp * 100.0) / 100.0;
+
+    // retunr new temp
+    return new_temp;
 }
 
 // func to display info on page 
