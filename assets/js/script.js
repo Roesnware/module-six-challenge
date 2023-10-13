@@ -44,4 +44,24 @@ function getGeoLocation(city, state_code, country_code) {
     req.onload = checkGeoLocation;
 }
 
+// check response from geo loc api call 
+function checkGeoLocation() {
+    if(this.status == 200){
+        // successful req
+        // parse data
+        var data = JSON.parse(this.responseText);
+
+        // get lat adn long
+        var lat = data[0].lat;
+        var long = data[0].lon;
+
+        // store lat and lon
+        localStorage.setItem("latitude", lat);
+        localStorage.setItem("longitude", long);
+    } else {
+        // bad req
+        console.log(this.responseText);
+    }
+}
+
 getGeoLocation("orlando", "FL", 1);
