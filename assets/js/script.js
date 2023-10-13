@@ -17,6 +17,7 @@ const limit = 1;
 
 // const api call url
 const geo_location_url = "http://api.openweathermap.org/geo/1.0/direct";
+const weather_url = "https://api.openweathermap.org/data/2.5/weather";
 
 // func to get geo loc
 function getGeoLocation(city, state_code, country_code) {
@@ -73,8 +74,26 @@ function checkGeoLocation() {
 }
 
 // func to get weather
-function getWeather() {
-    
+function getWeather(lat, lon) {
+    // copy call url 
+    let url = weather_url;
+
+    // build url params
+    url += "?lat=" + lat;
+    url += "&lon=" + lon;
+    url += "&appid=" + API_KEY;
+
+    // xml var
+    let req = new XMLHttpRequest();
+
+    // open req
+    req.open("GET", url, true);
+
+    // send req
+    req.send(null);
+
+    // check response 
+    req.onload = checkWeather;
 }
 
 getGeoLocation("orlando", "FL", 1);
