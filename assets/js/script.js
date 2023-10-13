@@ -9,6 +9,9 @@ let five_day_forecast_temp = Array.from(document.getElementById("forecast-temp")
 let five_day_forecast_wind = Array.from(document.getElementById("forecast-wind"));
 let five_day_forecast_humid = Array.from(document.getElementById("forecast-humidity"));
 
+// day
+const date = dayjs().format("M/DD/YYYY");
+
 // const api key 
 const API_KEY = "63ade8061ec746b59a54a2e5c87f0f82";
 
@@ -164,4 +167,23 @@ function handlePage(icon, wind, humidity, temp) {
     curr_wind.innerText += " " + wind + " MPH";
 }
 
-getGeoLocation("orlando", "FL", 1);
+// fucn to set curr date
+function setDate() {
+    // set date
+    curr_date.innerText = " (" + date + ") ";
+    //console.log(date);
+}
+
+// initalize func
+function init() {
+    // get input on search
+    //getGeoLocation("orlando", "FL", 1);
+
+    // set date 
+    setDate();
+
+    // set up 5-day forecast
+
+}
+
+init();
