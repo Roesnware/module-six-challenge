@@ -257,7 +257,7 @@ function checkForecast() {
 
 
         //day_one_date.innerText = date_one;
-        console.log(day_one);
+        //console.log(day_one);
         day_one_temp.innerText += " " + day_one.main.temp + " °F";
         //console.log(day_one.main.temp);
 
@@ -269,6 +269,7 @@ function checkForecast() {
 
         day_one_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_one.weather[0].icon}.png">`;
 
+        day_one_date.innerText = dayjs(day_one.dt_txt).format("MM/D/YYYY");
         //console.log(day_two);
         day_two_temp.innerText += " " + day_two.main.temp + " °F";
         //console.log(day_two.main.temp);
@@ -281,7 +282,7 @@ function checkForecast() {
 
         day_two_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_two.weather[0].icon}.png">`;
 
-        //day_one_date.innerText = date_one;
+        day_two_date.innerText = dayjs(day_two.dt_txt).format("MM/D/YYYY");
         //console.log(day_three);
         day_three_temp.innerText += " " + day_three.main.temp + " °F";
         //console.log(day_three.main.temp);
@@ -294,7 +295,7 @@ function checkForecast() {
 
         day_three_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_three.weather[0].icon}.png">`;
 
-        //day_one_date.innerText = date_one;
+        day_three_date.innerText = dayjs(day_three.dt_txt).format("MM/D/YYYY");
         //console.log(day_four);
         day_four_temp.innerText += " " + day_four.main.temp + " °F";
         //console.log(day_four.main.temp);
@@ -307,6 +308,7 @@ function checkForecast() {
 
         day_four_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_four.weather[0].icon}.png">`;
 
+        day_four_date.innerText = dayjs(day_four.dt_txt).format("MM/D/YYYY");
         //day_one_date.innerText = date_one;
         //console.log(day_five);
         day_five_temp.innerText += " " + day_five.main.temp + " °F";
@@ -319,6 +321,8 @@ function checkForecast() {
         //console.log(day_five.wind.speed);
 
         day_five_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_five.weather[0].icon}.png">`;
+
+        day_five_date.innerText = dayjs(day_five.dt_txt).format("MM/D/YYYY");
 
         //console.log(day_one);
         //console.log(data);
