@@ -96,4 +96,17 @@ function getWeather(lat, lon) {
     req.onload = checkWeather;
 }
 
+// fucn to check api call to weather
+function checkWeather() {
+    if(this.status == 200) {
+        // successful req
+        // parse data 
+        let data = JSON.parse(this.responseText);
+        console.log(data);
+    } else {
+        // bad req
+        console.log(this.responseText);
+    }
+}
+
 getGeoLocation("orlando", "FL", 1);
