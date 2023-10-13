@@ -5,35 +5,52 @@ const curr_icon = document.getElementById("main-icon");
 const curr_temp = document.getElementById("curr-temp");
 const curr_wind = document.getElementById("curr-wind");
 const curr_humid = document.getElementById("curr-humidity");
-let five_day_forecast_temp = Array.from(document.getElementById("forecast-temp"));
-let five_day_forecast_wind = Array.from(document.getElementById("forecast-wind"));
-let five_day_forecast_humid = Array.from(document.getElementById("forecast-humidity"));
+
+// hooks for 5day forecast 
+let day_one_humid = document.getElementById("forecast-humidity-1");
+let day_one_temp = document.getElementById("forecast-temp-1");
+let day_one_wind = document.getElementById("forecast-wind-1");
+
+let day_two_humid = document.getElementById("forecast-humidity-2");
+let day_two_temp = document.getElementById("forecast-temp-2");
+let day_two_wind = document.getElementById("forecast-wind-2");
+
+let day_three_humid = document.getElementById("forecast-humidity-3");
+let day_three_temp = document.getElementById("forecast-temp-3");
+let day_three_wind = document.getElementById("forecast-wind-3");
+
+let day_four_humid = document.getElementById("forecast-humidity-4");
+let day_four_temp = document.getElementById("forecast-temp-4");
+let day_four_wind = document.getElementById("forecast-wind-4");
+
+let day_five_humid = document.getElementById("forecast-humidity-5");
+let day_five_temp = document.getElementById("forecast-temp-5");
+let day_five_wind = document.getElementById("forecast-wind-5");
 
 // day
 const date = dayjs().format("M/DD/YYYY");
 
 // const api key 
 const API_KEY = "63ade8061ec746b59a54a2e5c87f0f82";
+const SEC_API = "c55fd56ad1ed23b85b1285339c62ede4";
 
 // const var
 const limit = 1;
 const count = 5;
 
 // const api call url
-const geo_location_url = "http://api.openweathermap.org/geo/1.0/direct";
+const geo_location_url = "https://api.openweathermap.org/geo/1.0/direct";
 const weather_url = "https://api.openweathermap.org/data/2.5/weather";
-const forecast_url = "https://api.openweathermap.org/data/2.5/forecast/daily";
+const forecast_url = "https://api.openweathermap.org/data/2.5/forecast";
 
 // func to get geo loc
-function getGeoLocation(city, state_code, country_code) {
+function getGeoLocation(city) {
 
     // copy url
     let url = geo_location_url;
 
     // build params
     url += "?q=" + city;
-    url += "," + state_code;
-    url += "," + country_code;
     url += "&limit=" + limit;
     url += "&appid=" + API_KEY;
 
@@ -62,9 +79,14 @@ function checkGeoLocation() {
         var long = data[0].lon;
         var name = data[0].name;
 
+        let new_lat = roundMe(lat);
+        let new_long = roundMe(long);
+
+        //console.log(new_lat, new_long);
+
         // store lat and lon
-        localStorage.setItem("latitude", lat);
-        localStorage.setItem("longitude", long);
+        localStorage.setItem("latitude", new_lat);
+        localStorage.setItem("longitude", new_long);
         localStorage.setItem("city_name", name);
 
         // display name to screen
@@ -145,13 +167,13 @@ function convertTemp(temp) {
     return new_temp;
 }
 
-// func to round tmep 
-function roundMe(temp) {
+// func to round num to 2 dec 
+function roundMe(num) {
     // round 
-    new_temp = Math.round(temp * 100.0) / 100.0;
+    new_num = Math.round(num * 100.0) / 100.0;
 
     // retunr new temp
-    return new_temp;
+    return new_num;
 }
 
 // func to display info on page 
@@ -177,21 +199,17 @@ function setDate() {
 }
 
 // func to get 5-day forecast
-function get5Day() {
+function get5Day(lat, long) {
     // copy url 
     let url = forecast_url;
 
-    // add lat from local storage 
-    let lat = localStorage.getItem("latitude");
     url += "?lat=" + lat;
+    url += "&lon=" + long;
 
-    // add long from local storage
-    let long = localStorage.getItem("longitude");
-    url += "&lon" + long;
-
-    // add count and pai keyy
+    // add count and pai key
     url += "&cnt=" + count;
-    url += "&appid=" + API_KEY;
+    url += "&units=imperial";
+    url += "&appid=" + SEC_API;
 
     // req var
     let req = new XMLHttpRequest();
@@ -206,16 +224,93 @@ function get5Day() {
     req.onload = checkForecast;
 }
 
+// func to check response to api call
+function checkForecast() {
+    if(this.status == 200) {
+        // successful req 
+        // parse data
+        let data = JSON.parse(this.responseText);
+
+        // set 5 days hooks
+        let day_one = data.list[0];
+        let day_two = data.list[1];
+        let day_three = data.list[2];
+        let day_four = data.list[3];
+        let day_five = data.list[4];
+
+
+        //console.log(day_one);
+        day_one_temp.innerText += " " + day_one.main.temp + " °F";
+        //console.log(day_one.main.temp);
+
+        day_one_humid.innerText += " " + day_one.main.humidity + " %";
+        //console.log(day_one.main.humidity);
+
+        day_one_wind.innerText += " " + day_one.wind.speed + " MPH";
+        //console.log(day_one.wind.speed);
+
+        //console.log(day_two);
+        day_two_temp.innerText += " " + day_two.main.temp + " °F";
+        //console.log(day_two.main.temp);
+
+        day_two_humid.innerText += " " + day_two.main.humidity + " %";
+        //console.log(day_two.main.humidity);
+
+        day_two_wind.innerText += " " + day_two.wind.speed + " MPH";
+        //console.log(day_two.wind.speed);
+
+        //console.log(day_three);
+        day_three_temp.innerText += " " + day_three.main.temp + " °F";
+        //console.log(day_three.main.temp);
+
+        day_three_humid.innerText += " " + day_three.main.humidity + " %";
+        //console.log(day_three.main.humidity);
+
+        day_three_wind.innerText += " " + day_three.wind.speed + " MPH";
+        //console.log(day_three.wind.speed);
+
+        //console.log(day_four);
+        day_four_temp.innerText += " " + day_four.main.temp + " °F";
+        //console.log(day_four.main.temp);
+
+        day_four_humid.innerText += " " + day_four.main.humidity + " %";
+        //console.log(day_four.main.humidity);
+
+        day_four_wind.innerText += " " + day_four.wind.speed + " MPH";
+        //console.log(day_four.wind.speed);
+
+        //console.log(day_five);
+        day_five_temp.innerText += " " + day_five.main.temp + " °F";
+        //console.log(day_five.main.temp);
+
+        day_five_humid.innerText += " " + day_five.main.humidity + " %";
+        //console.log(day_five.main.humidity);
+
+        day_five_wind.innerText += " " + day_five.wind.speed + " MPH";
+        //console.log(day_five.wind.speed);
+
+        //console.log(day_one);
+        //console.log(data);
+    } else {
+        // bad req
+        console.log(this.responseText);
+    }
+}
+
 // initalize func
 function init() {
     // get input on search
-    //getGeoLocation("orlando", "FL", 1);
+    getGeoLocation("orlando");
 
     // set date 
     setDate();
 
+    // get curr city lat and long from storage
+    let lat = localStorage.getItem("latitude");
+    let long = localStorage.getItem("longitude");
+
     // set up 5-day forecast
-    get5Day();
+    get5Day(lat, long);
 }
 
 init();
