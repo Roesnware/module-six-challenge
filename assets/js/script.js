@@ -196,7 +196,7 @@ function roundMe(num) {
 // func to display info on page 
 function handlePage(icon, wind, humidity, temp) {
     // set icon 
-    curr_icon.innerText = icon;
+    curr_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${icon}.png">`;
 
     // set humidity
     curr_humid.innerText += " " + humidity + " %";
@@ -267,7 +267,7 @@ function checkForecast() {
         day_one_wind.innerText += " " + day_one.wind.speed + " MPH";
         //console.log(day_one.wind.speed);
 
-        day_one_icon.innerText = day_one.weather[0].icon;
+        day_one_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_one.weather[0].icon}.png">`;
 
         //console.log(day_two);
         day_two_temp.innerText += " " + day_two.main.temp + " °F";
@@ -279,7 +279,7 @@ function checkForecast() {
         day_two_wind.innerText += " " + day_two.wind.speed + " MPH";
         //console.log(day_two.wind.speed);
 
-        day_two_icon.innerText = day_two.weather[0].icon;
+        day_two_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_two.weather[0].icon}.png">`;
 
         //day_one_date.innerText = date_one;
         //console.log(day_three);
@@ -292,7 +292,7 @@ function checkForecast() {
         day_three_wind.innerText += " " + day_three.wind.speed + " MPH";
         //console.log(day_three.wind.speed);
 
-        day_three_icon.innerText = day_three.weather[0].icon;
+        day_three_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_three.weather[0].icon}.png">`;
 
         //day_one_date.innerText = date_one;
         //console.log(day_four);
@@ -305,7 +305,7 @@ function checkForecast() {
         day_four_wind.innerText += " " + day_four.wind.speed + " MPH";
         //console.log(day_four.wind.speed);
 
-        day_four_icon.innerText = day_four.weather[0].icon;
+        day_four_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_four.weather[0].icon}.png">`;
 
         //day_one_date.innerText = date_one;
         //console.log(day_five);
@@ -318,7 +318,7 @@ function checkForecast() {
         day_five_wind.innerText += " " + day_five.wind.speed + " MPH";
         //console.log(day_five.wind.speed);
 
-        day_five_icon.innerText = day_five.weather[0].icon;
+        day_five_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_five.weather[0].icon}.png">`;
 
         //console.log(day_one);
         //console.log(data);
