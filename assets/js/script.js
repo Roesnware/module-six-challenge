@@ -1,4 +1,11 @@
-// hooks
+// query hook
+var input = $("#search-bar");
+var button = $("#search-btn");
+
+// click func
+$(button).on("click", init);
+
+// doc hooks
 const curr_city_name = document.getElementById("city-name");
 const curr_date = document.getElementById("curr-date");
 const curr_icon = document.getElementById("main-icon");
@@ -323,8 +330,11 @@ function checkForecast() {
 
 // initalize func
 function init() {
+
+    var city = input.val().trim();
+
     // get input on search
-    getGeoLocation("orlando");
+    getGeoLocation(city);
 
     // set date 
     setDate();
@@ -336,5 +346,3 @@ function init() {
     // set up 5-day forecast
     get5Day(lat, long);
 }
-
-init();
