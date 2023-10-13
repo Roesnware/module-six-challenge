@@ -8,3 +8,40 @@ const curr_humid = document.getElementById("curr-humidity");
 let five_day_forecast_temp = Array.from(document.getElementById("forecast-temp"));
 let five_day_forecast_wind = Array.from(document.getElementById("forecast-wind"));
 let five_day_forecast_humid = Array.from(document.getElementById("forecast-humidity"));
+
+// const api key 
+const API_KEY = "63ade8061ec746b59a54a2e5c87f0f82";
+
+// const var
+const limit = 1;
+
+// const api call url
+const geo_location_url = "http://api.openweathermap.org/geo/1.0/direct";
+
+// func to get geo loc
+function getGeoLocation(city, state_code, country_code) {
+
+    // copy url
+    let url = geo_location_url;
+
+    // build params
+    url += "?q=" + city;
+    url += "," + state_code;
+    url += "," + country_code;
+    url += "&limit=" + limit;
+    url += "&appid=" + API_KEY;
+
+    // xml var 
+    let req = new XMLHttpRequest() ;
+
+    // open req
+    req.open("GET", url, true);
+
+    // send req w null body
+    req.send(null);
+
+    // check response
+    req.onload = checkGeoLocation;
+}
+
+getGeoLocation("orlando", "FL", 1);
