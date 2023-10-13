@@ -1,6 +1,15 @@
 // query hook
 var input = $("#search-bar");
 var button = $("#search-btn");
+var history_btn = $("#history-button");
+
+var myarray = [];
+var most_recent = "";
+
+$(history_btn).on("click", function() {
+    // nto working????
+    console.log("hi");
+})
 
 // click func
 $(button).on("click", function () {
@@ -10,9 +19,12 @@ $(button).on("click", function () {
     // get input on search
 
     setDate();
-    
+
     getGeoLocation(city);
 
+    myarray.push(city);
+
+    localStorage.setItem("cities", JSON.stringify(myarray));
 });
 
 // doc hooks
@@ -281,7 +293,7 @@ function checkForecast() {
 
         day_one_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_one.weather[0].icon}.png">`;
 
-        day_one_date.innerText = dayjs(day_one.dt_txt).format("MM/D/YYYY");
+        day_one_date.innerText = `${dayjs(`${day_one.dt_txt}`).format("MM/D/YYYY")}`;
         //console.log(day_two);
         day_two_temp.innerText = "Temp: " + day_two.main.temp + " °F";
         //console.log(day_two.main.temp);
@@ -294,7 +306,7 @@ function checkForecast() {
 
         day_two_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_two.weather[0].icon}.png">`;
 
-        day_two_date.innerText = dayjs(day_two.dt_txt).format("MM/D/YYYY");
+        day_two_date.innerText = dayjs(`${day_two.dt_txt}`).format("MM/D/YYYY");
         //console.log(day_three);
         day_three_temp.innerText = "Temp: " + day_three.main.temp + " °F";
         //console.log(day_three.main.temp);
@@ -346,6 +358,18 @@ function checkForecast() {
 
 // initalize func
 function init() {
+
+    myarray = JSON.parse(localStorage.getItem("cities"));
+
+    if(myarray == null) {
+        myarray = [];
+    }
+
+    myarray.forEach(element => {
+
+        var history_button = `<input id="search-btn" class="btn btn-secondary text-dark w-100 my-2" type="submit" value="${element}"></input>`
+        $("#search-history").append(history_button); 
+    });
 
     // set date 
     setDate();
