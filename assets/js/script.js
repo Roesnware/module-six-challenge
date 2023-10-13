@@ -54,14 +54,27 @@ function checkGeoLocation() {
         // get lat adn long
         var lat = data[0].lat;
         var long = data[0].lon;
+        var name = data[0].name;
 
         // store lat and lon
         localStorage.setItem("latitude", lat);
         localStorage.setItem("longitude", long);
+        localStorage.setItem("city_name", name);
+
+        // display name to screen
+        curr_city_name.innerText = name;
+
+        // make next call using lat and lon
+        getWeather(lat, lon);
     } else {
         // bad req
         console.log(this.responseText);
     }
+}
+
+// func to get weather
+function getWeather() {
+    
 }
 
 getGeoLocation("orlando", "FL", 1);
