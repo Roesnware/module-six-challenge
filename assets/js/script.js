@@ -66,7 +66,7 @@ function checkGeoLocation() {
         curr_city_name.innerText = name;
 
         // make next call using lat and lon
-        getWeather(lat, lon);
+        getWeather(lat, long);
     } else {
         // bad req
         console.log(this.responseText);
@@ -102,7 +102,19 @@ function checkWeather() {
         // successful req
         // parse data 
         let data = JSON.parse(this.responseText);
+
+        // save data into var
+        let icon = data.weather[0].icon;
+        let wind = data.wind.speed;
+        let humidity = data.main.humidity;
+        let temp = data.main.temp;
         console.log(data);
+        console.log(wind, humidity, temp);
+
+        // save data to local storage 
+        localStorage.setItem("wind_speed", wind);
+        localStorage.setItem("humidity", humidity);
+        localStorage.setItem("temperature", temp);
     } else {
         // bad req
         console.log(this.responseText);
