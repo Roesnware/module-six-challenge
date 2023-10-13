@@ -33,7 +33,7 @@ function getGeoLocation(city, state_code, country_code) {
     url += "&appid=" + API_KEY;
 
     // xml var 
-    let req = new XMLHttpRequest() ;
+    let req = new XMLHttpRequest();
 
     // open req
     req.open("GET", url, true);
@@ -47,7 +47,7 @@ function getGeoLocation(city, state_code, country_code) {
 
 // check response from geo loc api call 
 function checkGeoLocation() {
-    if(this.status == 200){
+    if (this.status == 200) {
         // successful req
         // parse data
         var data = JSON.parse(this.responseText);
@@ -98,7 +98,7 @@ function getWeather(lat, lon) {
 
 // fucn to check api call to weather
 function checkWeather() {
-    if(this.status == 200) {
+    if (this.status == 200) {
         // successful req
         // parse data 
         let data = JSON.parse(this.responseText);
@@ -107,18 +107,46 @@ function checkWeather() {
         let icon = data.weather[0].icon;
         let wind = data.wind.speed;
         let humidity = data.main.humidity;
-        let temp = data.main.temp;
-        console.log(data);
-        console.log(wind, humidity, temp);
+        var temp = data.main.temp;
+        //console.log(data);
+        //console.log(wind, humidity, temp);
+
+        // convert temp
+        temp = convertTemp(temp);
 
         // save data to local storage 
+        localStorage.setItem("icon", icon);
         localStorage.setItem("wind_speed", wind);
         localStorage.setItem("humidity", humidity);
         localStorage.setItem("temperature", temp);
+
+        // display to page 
+        handlePage(icon, wind, humidity, temp);
     } else {
         // bad req
         console.log(this.responseText);
     }
+}
+
+// fucn to convert temp to far
+function convertTemp(temp) {
+    temp -= 273.15;
+    return temp;
+}
+
+// func to display info on page 
+function handlePage(icon, wind, humidity, temp) {
+    // set icon 
+    curr_icon.innerText = icon;
+
+    // set humidity
+    curr_humid.innerText += " " + humidity;
+
+    // set temp
+    curr_temp.innerText += " " + temp;
+
+    // set wind 
+    curr_wind.innerText += " " + wind;
 }
 
 getGeoLocation("orlando", "FL", 1);
