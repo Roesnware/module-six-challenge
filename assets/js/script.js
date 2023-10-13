@@ -3,7 +3,17 @@ var input = $("#search-bar");
 var button = $("#search-btn");
 
 // click func
-$(button).on("click", init);
+$(button).on("click", function () {
+    var city = input.val().trim();
+
+    console.log(city);
+    // get input on search
+
+    setDate();
+
+    getGeoLocation(city);
+
+});
 
 // doc hooks
 const curr_city_name = document.getElementById("city-name");
@@ -152,8 +162,9 @@ function checkWeather() {
         let wind = data.wind.speed;
         let humidity = data.main.humidity;
         var temp = data.main.temp;
-        //console.log(data);
         //console.log(wind, humidity, temp);
+
+        //data.coord.lon
 
         // convert temp
         temp = convertTemp(temp);
@@ -166,6 +177,7 @@ function checkWeather() {
 
         // display to page 
         handlePage(icon, wind, humidity, temp);
+        get5Day(data.coord.lat, data.coord.lon);
     } else {
         // bad req
         console.log(this.responseText);
@@ -199,13 +211,13 @@ function handlePage(icon, wind, humidity, temp) {
     curr_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${icon}.png">`;
 
     // set humidity
-    curr_humid.innerText += " " + humidity + " %";
+    curr_humid.innerText = "Humidity: " + humidity + " %";
 
     // set temp
-    curr_temp.innerText += " " + temp + " °F";
+    curr_temp.innerText = "Temp: " + temp + " °F";
 
     // set wind 
-    curr_wind.innerText += " " + wind + " MPH";
+    curr_wind.innerText = "Wind: " + wind + " MPH";
 }
 
 // fucn to set curr date
@@ -243,7 +255,7 @@ function get5Day(lat, long) {
 
 // func to check response to api call
 function checkForecast() {
-    if(this.status == 200) {
+    if (this.status == 200) {
         // successful req 
         // parse data
         let data = JSON.parse(this.responseText);
@@ -258,52 +270,52 @@ function checkForecast() {
 
         //day_one_date.innerText = date_one;
         //console.log(day_one);
-        day_one_temp.innerText += " " + day_one.main.temp + " °F";
+        day_one_temp.innerText = "Temp: " + day_one.main.temp + " °F";
         //console.log(day_one.main.temp);
 
-        day_one_humid.innerText += " " + day_one.main.humidity + " %";
+        day_one_humid.innerText = "Humidity: " + day_one.main.humidity + " %";
         //console.log(day_one.main.humidity);
 
-        day_one_wind.innerText += " " + day_one.wind.speed + " MPH";
+        day_one_wind.innerText = "Wind: " + day_one.wind.speed + " MPH";
         //console.log(day_one.wind.speed);
 
         day_one_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_one.weather[0].icon}.png">`;
 
         day_one_date.innerText = dayjs(day_one.dt_txt).format("MM/D/YYYY");
         //console.log(day_two);
-        day_two_temp.innerText += " " + day_two.main.temp + " °F";
+        day_two_temp.innerText = "Temp: " + day_two.main.temp + " °F";
         //console.log(day_two.main.temp);
 
-        day_two_humid.innerText += " " + day_two.main.humidity + " %";
+        day_two_humid.innerText = "Humidity: " + day_two.main.humidity + " %";
         //console.log(day_two.main.humidity);
 
-        day_two_wind.innerText += " " + day_two.wind.speed + " MPH";
+        day_two_wind.innerText = "Wind: " + day_two.wind.speed + " MPH";
         //console.log(day_two.wind.speed);
 
         day_two_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_two.weather[0].icon}.png">`;
 
         day_two_date.innerText = dayjs(day_two.dt_txt).format("MM/D/YYYY");
         //console.log(day_three);
-        day_three_temp.innerText += " " + day_three.main.temp + " °F";
+        day_three_temp.innerText = "Temp: " + day_three.main.temp + " °F";
         //console.log(day_three.main.temp);
 
-        day_three_humid.innerText += " " + day_three.main.humidity + " %";
+        day_three_humid.innerText = "Humidity: " + day_three.main.humidity + " %";
         //console.log(day_three.main.humidity);
 
-        day_three_wind.innerText += " " + day_three.wind.speed + " MPH";
+        day_three_wind.innerText = "Wind: " + day_three.wind.speed + " MPH";
         //console.log(day_three.wind.speed);
 
         day_three_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_three.weather[0].icon}.png">`;
 
         day_three_date.innerText = dayjs(day_three.dt_txt).format("MM/D/YYYY");
         //console.log(day_four);
-        day_four_temp.innerText += " " + day_four.main.temp + " °F";
+        day_four_temp.innerText = "Temp: " + day_four.main.temp + " °F";
         //console.log(day_four.main.temp);
 
-        day_four_humid.innerText += " " + day_four.main.humidity + " %";
+        day_four_humid.innerText = "Humidity: " + day_four.main.humidity + " %";
         //console.log(day_four.main.humidity);
 
-        day_four_wind.innerText += " " + day_four.wind.speed + " MPH";
+        day_four_wind.innerText = "Wind: " + day_four.wind.speed + " MPH";
         //console.log(day_four.wind.speed);
 
         day_four_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_four.weather[0].icon}.png">`;
@@ -311,13 +323,13 @@ function checkForecast() {
         day_four_date.innerText = dayjs(day_four.dt_txt).format("MM/D/YYYY");
         //day_one_date.innerText = date_one;
         //console.log(day_five);
-        day_five_temp.innerText += " " + day_five.main.temp + " °F";
+        day_five_temp.innerText = "Temp: " + day_five.main.temp + " °F";
         //console.log(day_five.main.temp);
 
-        day_five_humid.innerText += " " + day_five.main.humidity + " %";
+        day_five_humid.innerText = "Humidity: " + day_five.main.humidity + " %";
         //console.log(day_five.main.humidity);
 
-        day_five_wind.innerText += " " + day_five.wind.speed + " MPH";
+        day_five_wind.innerText = "Wind: " + day_five.wind.speed + " MPH";
         //console.log(day_five.wind.speed);
 
         day_five_icon.innerHTML = `<img src="https://openweathermap.org/img/w/${day_five.weather[0].icon}.png">`;
@@ -335,18 +347,13 @@ function checkForecast() {
 // initalize func
 function init() {
 
-    var city = input.val().trim();
-
-    // get input on search
-    getGeoLocation(city);
-
     // set date 
     setDate();
 
-    // get curr city lat and long from storage
-    let lat = localStorage.getItem("latitude");
-    let long = localStorage.getItem("longitude");
+    // get curr city data from storage
+    var city = localStorage.getItem("city_name");
+    
+    // run func w curr city
+    getGeoLocation(city);
 
-    // set up 5-day forecast
-    get5Day(lat, long);
 }
